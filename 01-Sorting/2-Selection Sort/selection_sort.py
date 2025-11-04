@@ -1,3 +1,7 @@
+#1- find smallest item of array
+#2- Replace smallest item first one on array
+#3- Expand sorted field
+#4- Cotinue all untill all items are sorted.
 def selection_sort(lst):
     length_list = len(lst)
     for i in range(length_list):
