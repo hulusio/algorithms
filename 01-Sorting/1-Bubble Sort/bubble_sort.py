@@ -1,3 +1,7 @@
+#1- Compare items each  other 
+#2- If an element is greater than the next element, they swap places.
+#3- This process continues until the entire list is sorted.
+
 def bubble_sort(lst):
   length_list = len(lst)
   for i in range(length_list - 1):
