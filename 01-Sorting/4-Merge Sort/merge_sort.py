@@ -12,19 +12,36 @@
    - This process continues until all subarrays are merged into a fully sorted array. 
 """"
 
-def merge_sort(lst):
-    length_list = len(lst)
-    for i in range(1, length_list):
-        key   = lst[i]
-        #print(key)
-        j = i -1
-  	# In each pass, the largest elements are pushed to the end
-        while( j >= 0 and lst[j] > key):                      
-            lst[j + 1] = lst[j]
-            j = j -1
-        lst[j +1] = key     
-if __name__ == "__main__":
-	lst = [5, 2, 9, 1, 5, 6]
-    # sort function
-	merge_sort(lst)
-	print(lst);
+def merges_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    leftHalf = arr[:mid]
+    rightHalf = arr[mid:]
+
+    sortedLeft = merges_sort(leftHalf)
+    sortedRight = merges_sort(rightHalf)
+
+    return merge(sortedLeft, sortedRight)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
+
+unsortedArr = [3, 7, 6, -10, 15, 23.5, 55, -13]
+sortedArr = merges_sort(unsortedArr)
+print("Sorted array:", sortedArr)
