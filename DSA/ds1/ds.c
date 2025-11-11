@@ -9,15 +9,24 @@ typedef n node;
 
 int main() {
 
-
-  printf("Hello World!");
+  printf("Hello World ! \n");
   node *root = (node*)malloc(sizeof(node));
   root->x = 10;
   root->next = (node*)malloc(sizeof(node));
   root->next->x = 20; 
-  for(int i =1 ; i<=3 ;i++)
-    {
-		
-    }
-  return 0;
+
+  root->next->next = (node*)malloc(sizeof(node));
+  root->next->next->x = 30;
+
+  root->next->next->next = NULL;
+
+  node *iter = root;
+  while(iter != NULL)
+  {
+    printf("%d \n", iter->x); 
+    iter = iter->next;
+  }
+
+  return 0; 
+
 }
