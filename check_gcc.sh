@@ -12,7 +12,7 @@ if [ ! -d "$MSYS_BIN" ]; then
   exit 2
 fi
 
-export PATH="$MSYS_BIN:$PATH"
+export PATH="/c/msys64/ucrt64/bin:$PATH"
 
 echo "Using MSYS2 bin: $MSYS_BIN"
 

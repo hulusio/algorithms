@@ -11,7 +11,9 @@ typedef n node;
 void bastir( node *r)
 {
     node *iter = r;
-    while(iter != NULL)
+    printf("%4d  ", iter->x);
+    iter = iter->next;
+    while(iter!= r)
     {
         printf("%4d  ", iter->x);
         iter = iter->next;
@@ -19,25 +21,48 @@ void bastir( node *r)
     printf("\n");
 }
 
+void ekle(node *r, int val)
+{
+    node *iter = r;
+     node *temp ;
+    while(iter->next != r)
+    {
+        iter = iter->next;
+    }
+    temp = (node*)malloc(sizeof(node));
+    iter->next = temp ;   
+    temp->x = val;      
+    temp->next = r; //iter->next;
+}
+
 node * ekle_sirali(node * r, int val)
 {
-    if(r == NULL) 
+    if(r == NULL) // liste bos
     {
         r = (node*)malloc(sizeof(node)); 
-        r->next = NULL;
+        r->next = r;
         r->x = val;        
         return r;
     }
-    if (r->x > val)
+    if (r->x > val) // basa ekle
     {
         node *yeni = (node*)malloc(sizeof(node));
     	yeni->x = val;
     	yeni-> next = r;
+
+        node * iter;
+        iter = r;
+        while(iter->next != r) // tail i bul
+        {
+            iter = iter->next;
+        }
+        iter->next = yeni; // tail in next ini yeni yap
     	return yeni;    
 	}
+
     node * iter;
     iter = r;
-    while(iter->next != NULL && iter->next->x < val)
+    while(iter->next != r && iter->next->x < val) // sirali ekle
     {
         iter = iter->next;
     }
@@ -50,27 +75,29 @@ node * ekle_sirali(node * r, int val)
 
 node* sil(node * r, int val)
 {
-    node * iter;
-    node * temp;
-    node * r2;
+    node * iter; 
     iter = r;
     if(val == r->x )
     {
-    	temp = r;
-        r2 = iter->next;
-        free(temp);
-        return r2;      
-    
-    }
-    else
-    {    
-        while(iter->next != NULL && val != iter->next->x )
+        while(iter->next != r) // tail i bul
         {
             iter = iter->next;
         }
-        if(iter->next == NULL) 
+        iter->next = r->next; // tail in next ini yeni yap
+        free(r);
+        return iter->next; // yeni root   
+    
+    }
+    else
+    {  
+        node * temp;  
+        while(iter->next != r && val != iter->next->x )
         {
-            printf("Silinecek eleman bulunamadi\n");
+            iter = iter->next;
+        }
+        if(iter->next == r) 
+        {
+            printf("eleman bulunamadi\n");
             return r;
         }
         temp = iter->next;
@@ -83,7 +110,7 @@ node* sil(node * r, int val)
 }
 int main() 
 {
-  	printf("Hello World ds4! \n");
+  	printf("Hello World ds5! \n");
 	node * root;
     root = NULL;
     root = ekle_sirali(root, 400); 
@@ -93,12 +120,18 @@ int main()
     root = ekle_sirali(root, 450); 
     root = ekle_sirali(root, 560); 
     root = ekle_sirali(root, 12);
-    bastir(root);
+
+    bastir(root);  
+  
     printf("-- 12 sildim \n") ;
     root = sil(root,12);
     bastir(root);
     printf("-- 40 sildim \n") ;   
     root = sil(root,40);
+    bastir(root);
+
+     printf("-- -- \n") ;   
+    root = sil(root,999);
     bastir(root);
 
     printf("-- 50 sildim \n") ;
@@ -108,6 +141,8 @@ int main()
     printf("-- 550 sildim \n") ;
     root = sil(root,550);
     bastir(root);
+ 
+
   return 0; 
 
 }
