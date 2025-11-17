@@ -1,7 +1,8 @@
 #ifndef STACK_LL_H
 #define STACK_LL_H
 #include <stdio.h>
-
+#define LL_TYPE  0 //1: push and pop onto TAIL
+                   //0: push and pop onto ROOT,HEAD,
 
 typedef struct n
 {    
@@ -10,8 +11,13 @@ typedef struct n
 }n;
 
 typedef n node ;
-//node* init();
+
+#if LL_TYPE 
 int pop(node *root);
+#else
+int pop(node **root);
+#endif
+
 node* push(int val, node *root);
 void bastir(node *root);
 

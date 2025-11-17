@@ -3,8 +3,8 @@
 #include "stack_ll.h"
 
 
-
-
+ // Adds and Deletes at the end of linked list
+ #if LL_TYPE 
 int pop(node *root)
 {
   if (root == NULL)
@@ -57,11 +57,46 @@ node * push(int val, node *root)
   iter->next = yeni;
   return root;
 }
+#else
+int pop(node **root)
+{
+  if (*root == NULL)
+  {
+    printf("Stack underflow\n");
+    *root = NULL;
+    return -1;
+    /* code */
+  }  
+
+  node * temp = *root;
+  int return_value = temp->data;
+  *root = temp->next;
+  free(temp);
+  //printf("rv %d\n",return_value);
+  return return_value;
+     
+}
+
+node * push(int val, node *root)
+{
+  if(root == NULL) // stack bos
+  {
+      root = (node*)malloc(sizeof(node)); 
+      root->next = NULL;
+      root->data = val;        
+      return root;
+  } 
+  node * yeni = (node*)malloc(sizeof(node));
+  yeni->data = val;
+  yeni->next = root;  
+  return yeni;
+}
+
+#endif
 
 void bastir(node *root) 
 {
-
-    node *iter = root;
+   node *iter = root;
     while(iter!= NULL)
     {
         printf("%4d  ", iter->data);
