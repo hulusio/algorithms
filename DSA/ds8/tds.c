@@ -5,6 +5,7 @@
 
 int main() 
 {
+  printf("Hello World ds8 -- stack (array) --!! \n");
   stack *s1;
   stack *s2;
   s1 = init();
