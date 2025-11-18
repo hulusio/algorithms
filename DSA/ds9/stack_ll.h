@@ -10,7 +10,7 @@ typedef struct n
  struct n *next;   
 }n;
 
-typedef n node ;
+typedef n node;
 
 #if LL_TYPE 
 int pop(node *root);

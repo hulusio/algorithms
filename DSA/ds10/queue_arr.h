@@ -1,4 +1,4 @@
-#ifndef QUEUE_ARR_H
+ #ifndef QUEUE_ARR_H
 #define QUEUE_ARR_H
 
 #include <stdio.h>
