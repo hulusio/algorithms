@@ -5,7 +5,7 @@
 
 int main() 
 {
-  printf("Hello World ds8 -- stack (linked-list) --!! \n");
+  printf("Hello World ds9 -- stack (linked-list) --!! \n");
 
  #if LL_TYPE 
  node *root = NULL;
