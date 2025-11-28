@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-void bybble_sort(int lst[], int n)
+void bubble_sort(int lst[], int n)
 {
   int temp ;
   for (size_t i = 0; i < n; i++)
@@ -39,7 +39,7 @@ int main()
     printf("%4d ",lst[i]);
   }
   printf("\nafter sort\n");
-  bybble_sort(lst, n);
+  bubble_sort(lst, n);
   for (size_t i = 0; i < n; i++)
   {
     printf("%4d ",lst[i]);
